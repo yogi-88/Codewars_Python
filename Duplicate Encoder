@@ -1,0 +1,49 @@
+## The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string
+, or ")" if that character appears more than once in the original string. 
+Ignore capitalization when determining if a character is a duplicate.
+
+Examples
+"din"      =>  "((("
+"recede"   =>  "()()()"
+"Success"  =>  ")())())"
+"(( @"     =>  "))((" 
+
+My Solution :
+def duplicate_encode(word):
+    word = word.lower()
+    new_word = []
+    for letter in word.lower():
+        if word.count(letter) == 1:
+            new_word.append('(')
+        else:
+            new_word.append(')')
+    return "".join(new_word)
+print(duplicate_encode("))(()())())"))
+
+## Learning
+By assigning word = word.lower() at the beginning, we ensure all characters are treated case-insensitively.
+Now word.count(letter) will correctly count occurrences of each letter in the lowercase version of the string.
+
+ALternative solution:
+
+def duplicate_encode(word):
+    """a new string where each character in the new string is '('
+    if that character appears only once in the original word, or ')'
+    if that character appears more than once in the original word.
+    Ignores capitalization when determining if a character is a duplicate. """
+    word = word.upper()
+    result = ""
+    for char in word:
+        if word.count(char) > 1:
+            result += ")"
+        else:
+            result += "("
+
+    return result
+print(duplicate_encode("din"))
+
+Alternative solution :
+
+def duplicate_encode(word):
+    word = word.lower()
+    return ''.join('(' if word.count(x) == 1 else ')' for x in word)
